@@ -16,7 +16,7 @@ export function CartItem({ product }) {
               <FaPlus />
             </button>
 
-            <span>1</span>
+            <span>{product.quantity}</span>
 
             <button>
               <FaMinus />

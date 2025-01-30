@@ -1,11 +1,11 @@
 import { products } from '../../data/products'
-import { Game } from '../Game'
+import { ProductGame } from '../ProductGame'
 
 export function ListGames() {
   return (
     <section className='flex flex-wrap  justify-center gap-4'>
       {products.map((product, index) => (
-        <Game product={product} key={index} />
+        <ProductGame product={product} key={index} />
       ))}
     </section>
   )
