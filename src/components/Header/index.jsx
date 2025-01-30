@@ -2,11 +2,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser, logoutUser } from "../../redux/user/slice";
 
 import { FaShoppingCart } from "react-icons/fa";
+import { selectProductsCount } from "../../redux/cart/cart.selector";
 
 export function Header({ setIsVisible }) {
   const { currentUser } = useSelector((reducer) => reducer.userReducer);
-
+  const { products } = useSelector(reducer => reducer.cartReducer)
+  
   const dispatch = useDispatch();
+
+  const productCount = useSelector(selectProductsCount)
 
   function handleLoginClick() {
     dispatch(loginUser({ name: "Leandro", email: "Leandrorf1606@gmail.com" }));
@@ -35,7 +39,7 @@ export function Header({ setIsVisible }) {
           <div className="relative">
             <FaShoppingCart />
             <span className="absolute -top-2 -right-3 bg-red-600 px-1 text-xs rounded-full">
-              0
+              {productCount}
             </span>
           </div>
         </button>
