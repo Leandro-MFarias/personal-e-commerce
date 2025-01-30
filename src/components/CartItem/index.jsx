@@ -1,8 +1,24 @@
 import { IoIosClose } from "react-icons/io";
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa6";
+import { useDispatch } from "react-redux";
+import { decreaseProduct, increaseProduct, removeProduct } from "../../redux/cart/slice";
 
 export function CartItem({ product }) {
+  const dispatch = useDispatch()
+
+  function handleRemoveProduct() {
+    dispatch(removeProduct(product.id))
+  }
+
+  function handleIncreaseProduct() {
+    dispatch(increaseProduct(product.id))
+  }
+
+  function handleDecreaseProduct() {
+    dispatch(decreaseProduct(product.id))
+  }
+
   return (
     <div className="flex">
       <img src={product.imageUrl} className="w-36" alt="jlkjlkjlkjlkjljljlkj" />
@@ -12,18 +28,18 @@ export function CartItem({ product }) {
 
         <div className="flex space-x-24">
           <div className="flex items-center space-x-2 pl-2">
-            <button>
-              <FaPlus />
+            <button onClick={handleDecreaseProduct}>
+              <FaMinus />
             </button>
 
             <span>{product.quantity}</span>
 
-            <button>
-              <FaMinus />
+            <button onClick={handleIncreaseProduct}>
+              <FaPlus />
             </button>
           </div>
 
-          <button>
+          <button onClick={handleRemoveProduct}>
             <IoIosClose className="text-4xl text-zinc-500" />
           </button>
         </div>
