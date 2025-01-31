@@ -37,15 +37,16 @@ const cartSlice = createSlice({
       );
     },
     decreaseProduct: (state, action) => {
-      state.products = state.products.map((product) =>
-        product.id === action.payload
-          ? { ...product, quantity: product.quantity - 1 }
-          : product
-      ).filter((product) => product.quantity > 0)
+      state.products = state.products
+        .map((product) =>
+          product.id === action.payload
+            ? { ...product, quantity: product.quantity - 1 }
+            : product
+        )
+        .filter((product) => product.quantity > 0);
     },
   },
 });
 
-export const { addProduct, removeProduct, increaseProduct, decreaseProduct } =
-  cartSlice.actions;
+export const { addProduct, removeProduct, increaseProduct, decreaseProduct } = cartSlice.actions;
 export default cartSlice.reducer;

@@ -1,9 +1,12 @@
 import { IoIosClose } from "react-icons/io";
 import { CartItem } from "../CartItem";
 import { useSelector } from "react-redux";
+import { selectCartTotalPrice } from "../../redux/cart/cart.selectors";
 
 export function Cart({ setIsVisible }) {
-  const { products } = useSelector(reducer => reducer.cartReducer)
+  const { products } = useSelector((reducer) => reducer.cartReducer);
+
+  const totalPrice = useSelector(selectCartTotalPrice);
 
   return (
     <div className="absolute h-screen bg-white text-black w-[480px] top-0 right-0 flex flex-col px-2 py-6">
@@ -16,8 +19,8 @@ export function Cart({ setIsVisible }) {
         {products.map((product) => (
           <CartItem product={product} key={product.id} />
         ))}
-        
-        {/* <p className="text-3xl font-bold">Total: 1,000.00</p> */}
+
+        <p className="text-3xl font-bold">Total: {totalPrice}</p>
       </div>
     </div>
   );

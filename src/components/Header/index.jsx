@@ -2,15 +2,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser, logoutUser } from "../../redux/user/slice";
 
 import { FaShoppingCart } from "react-icons/fa";
-import { selectProductsCount } from "../../redux/cart/cart.selector";
+import { selectProductsCount } from "../../redux/cart/cart.selectors";
 
 export function Header({ setIsVisible }) {
   const { currentUser } = useSelector((reducer) => reducer.userReducer);
-  const { products } = useSelector(reducer => reducer.cartReducer)
-  
+
   const dispatch = useDispatch();
 
-  const productCount = useSelector(selectProductsCount)
+  const productCount = useSelector(selectProductsCount);
 
   function handleLoginClick() {
     dispatch(loginUser({ name: "Leandro", email: "Leandrorf1606@gmail.com" }));
@@ -25,10 +24,15 @@ export function Header({ setIsVisible }) {
       <h2 className="text-3xl text-orange-500 font-semibold">ShopGames</h2>
       <nav className="flex items-center space-x-8">
         <div>
-          {currentUser 
-            ? <p onClick={handleLogoutClick} className="cursor-pointer text-lg">Sair</p> 
-            : <p onClick={handleLoginClick} className="cursor-pointer text-lg">Login</p>
-          }
+          {currentUser ? (
+            <p onClick={handleLogoutClick} className="cursor-pointer text-lg">
+              Sair
+            </p>
+          ) : (
+            <p onClick={handleLoginClick} className="cursor-pointer text-lg">
+              Login
+            </p>
+          )}
         </div>
 
         <button
