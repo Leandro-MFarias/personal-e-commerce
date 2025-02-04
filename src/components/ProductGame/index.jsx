@@ -10,7 +10,7 @@ export function ProductGame({ product }) {
 
 
   return (
-    <div className="bg-white flex flex-col justify-around w-[280px] h-[340px] py-4 rounded-xl">
+    <div className="bg-white shadow-shape flex flex-col justify-around w-[280px] h-[340px] py-4 rounded-xl">
       <img
         src={product.imageUrl}
         alt="Imagem da capa do jogo"

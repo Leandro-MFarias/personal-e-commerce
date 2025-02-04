@@ -1,62 +1,66 @@
-import { useDispatch, useSelector } from "react-redux";
-import { loginUser, logoutUser } from "../../redux/user/slice";
-
-import { FaShoppingCart } from "react-icons/fa";
-import { selectProductsCount } from "../../redux/cart/cart.selectors";
-import { BiSearch } from "react-icons/bi";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { selectProductsCount } from "../../redux/cart/cart.selectors";
 import { products } from "../../data/products";
 
+import { FaShoppingCart } from "react-icons/fa";
+import { BiSearch } from "react-icons/bi";
+
 export function Header({ setIsVisible }) {
-  const [ searchValue, setSearchValue ] = useState('')
+  const [search, setSearch] = useState("");
 
-  const { currentUser } = useSelector((reducer) => reducer.userReducer);
+  const searchLowerCase = search.toLocaleLowerCase();
 
-  const dispatch = useDispatch();
+  const searchFilter = products.filter((item) =>
+    item.name.toLocaleLowerCase().includes(searchLowerCase)
+  );
 
   const productCount = useSelector(selectProductsCount);
 
-  function handleLoginClick() {
-    dispatch(loginUser({ name: "Leandro", email: "Leandrorf1606@gmail.com" }));
-  }
+  function handleInputChange(e) {
+    const { value } = e.target;
 
-  function handleLogoutClick() {
-    dispatch(logoutUser());
+    if(!value) return
+    
+
+
   }
 
   function handleSearch(e) {
-    e.preventDefault()
-    
+    e.preventDefault();
   }
 
   return (
     <header className="flex justify-between py-6 xl:px-3 px-4">
       <h2 className="text-3xl text-orange-500 font-semibold">ShopGames</h2>
       <nav className="flex items-center space-x-8">
-        <form onSubmit={handleSearch} className="flex items-center bg-white px-2 py-1 rounded-2xl border-[2px] border-orange-500">
-          <input
-            type="search"
-            value={searchValue}
-            placeholder="Buscar produtos"
-            className="bg-transparent pl-2 outline-none text-zinc-700"
-            onChange={(e) => setSearchValue(e.target.value)}
-            required
-          />
-          <button type="submit" className="hover:scale-110 transition duration-150 ease-in">
-            <BiSearch className="text-zinc-800 text-xl" />
-          </button>
-        </form>
-
-        <div className="px-2">
-          {currentUser ? (
-            <p onClick={handleLogoutClick} className="cursor-pointer text-lg">
-              Sair
-            </p>
-          ) : (
-            <p onClick={handleLoginClick} className="cursor-pointer text-lg">
-              Login
-            </p>
-          )}
+        <div>
+          <form
+            onSubmit={handleSearch}
+            className="flex items-center justify-between bg-white px-2 w-72 py-1 rounded-xl border-[2px] border-orange-500"
+          >
+            <input
+              type="search"
+              value={search}
+              placeholder="Buscar produtos"
+              className="bg-transparent pl-2 outline-none text-zinc-700"
+              onChange={handleInputChange}
+              required
+            />
+            <button
+              type="submit"
+              className="hover:scale-110 transition duration-150 ease-in"
+            >
+              <BiSearch className="text-zinc-800 text-xl" />
+            </button>
+          </form>
+          <div className="absolute ml-1 bg-zinc-50 text-black w-[280px] px-2 rounded-b-lg">
+            <ul>
+              <li>Mario</li>
+              <li>Zelda</li>
+              <li>Donkey Kong</li>
+            </ul>
+          </div>
         </div>
 
         <button
