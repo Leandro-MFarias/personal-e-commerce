@@ -9,6 +9,8 @@ export function SearchBar() {
   const [isOpen, setIsOpen] = useState(false);
 
   function handleInputChange(e) {
+    e.preventDefault()
+
     const { value } = e.target;
     setSearch(value);
 
