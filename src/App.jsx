@@ -15,7 +15,7 @@ export function App() {
   }
 
   return (
-    <div className="relative" onClick={handleCloseCart}>
+    <div onClick={handleCloseCart}>
       <div className="max-w-screen-2xl mx-auto">
         <Header setIsVisible={setIsVisible} />
         <div className="bg-orange-600 w-full h-[1px] mb-10" />

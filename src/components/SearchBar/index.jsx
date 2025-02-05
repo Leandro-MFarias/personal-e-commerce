@@ -32,7 +32,7 @@ export function SearchBar() {
     <div>
       <form className="flex items-center justify-between bg-white px-2 w-72 py-1 rounded-xl border-[2px] border-orange-500">
         <input
-          type="search"
+          type="text"
           value={search}
           placeholder="Buscar produtos"
           className="bg-transparent pl-2 outline-none text-zinc-700"

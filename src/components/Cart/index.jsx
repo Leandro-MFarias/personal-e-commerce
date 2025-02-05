@@ -9,23 +9,23 @@ export function Cart({ setIsVisible }) {
   const totalPrice = useSelector(selectCartTotalPrice);
 
   return (
-    <div className="absolute bg-white text-black w-[480px] top-0 right-0 flex flex-col justify-between px-2 py-6 h-screen snap-y overflow-y-auto">
-      <div className="flex flex-col">
-        <button className="self-end" onClick={() => setIsVisible(false)}>
-          <IoIosClose className="text-5xl" />
-        </button>
-        <h2 className="text-3xl pl-2 font-semibold mb-6">Seu Carrinho</h2>
-
-        <div className="relative space-y-4">
-          {products.map((product) => (
-            <div key={product.id} className="snap-start">
-              <CartItem product={product} />
-              <div className="w-full h-[1px] bg-zinc-400" />
-            </div>
-          ))}
+    <div className="fixed bg-white text-black w-[380px] top-0 right-0 flex flex-col justify-between px-2 py-6 h-screen">
+      <div className={`space-y-4 flex-grow-1 overflow-y-auto overflow-x-hidden ${products.length <= 0 && `overflow-y-hidden`}`}>
+        <div className="flex items-center justify-between">
+          <h2 className="text-3xl pl-2 font-bold">Seu Carrinho</h2>
+          <button onClick={() => setIsVisible(false)}>
+            <IoIosClose className="text-5xl hover:scale-110 transition duration-200 ease" />
+          </button>
         </div>
+        {products.map((product) => (
+          <div key={product.id}>
+            <CartItem product={product} />
+            <div className="w-full h-[1px] bg-zinc-400" />
+          </div>
+        ))}
       </div>
-      <p className="bottom-0 text-3xl font-bold pb-4 pl-4">Total: R$ {totalPrice}</p>
+
+      <p className="text-3xl font-bold py-4 pl-4">Total: R$ {totalPrice}</p>
     </div>
   );
 }
