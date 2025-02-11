@@ -2,6 +2,7 @@ import { IoIosClose } from "react-icons/io";
 import { CartItem } from "../CartItem";
 import { useSelector } from "react-redux";
 import { selectCartTotalPrice } from "../../redux/cart/cart.selectors";
+import { locatePrice } from "../../utils/locatePrice";
 
 export function Cart({ setIsVisible }) {
   const { products } = useSelector((reducer) => reducer.cartReducer);
@@ -25,7 +26,7 @@ export function Cart({ setIsVisible }) {
         ))}
       </div>
 
-      <p className="text-3xl font-bold py-4 pl-4">Total: R$ {totalPrice}</p>
+      <p className="text-3xl font-bold py-4 pl-4">Total: {locatePrice(totalPrice)}</p>
     </div>
   );
 }

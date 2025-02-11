@@ -7,6 +7,7 @@ import {
   increaseProduct,
   removeProduct,
 } from "../../redux/cart/slice";
+import { locatePrice } from '../../utils/locatePrice'
 
 export function CartItem({ product }) {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ export function CartItem({ product }) {
       <img src={product.imageUrl} className="w-36" alt={product.name} />
       <div className="pt-2 space-y-2">
         <p className="font-bold">{product.name}</p>
-        <p className="text-lg font-bold text-orange-500">R$ {product.price}</p>
+        <p className="text-lg font-bold text-orange-500">{locatePrice(product.price)}</p>
 
         <div className="flex space-x-24">
           <div className="flex items-center space-x-2 pl-2">

@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/cart/slice";
+import { locatePrice } from "../../utils/locatePrice"
 
 export function ProductGame({ product }) {
   const dispatch = useDispatch()
@@ -18,7 +19,7 @@ export function ProductGame({ product }) {
       />
       <div className="px-4">
         <p className="text-zinc-600 font-bold">{product.name}</p>
-        <p className="text-orange-500 font-bold text-xl">R$ {product.price}</p>
+        <p className="text-orange-500 font-bold text-xl">{locatePrice(product.price)}</p>
       </div>
       <button 
         onClick={handleAddProduct}
