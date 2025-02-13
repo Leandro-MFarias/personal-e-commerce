@@ -7,7 +7,8 @@ import {
   increaseProduct,
   removeProduct,
 } from "../../redux/cart/slice";
-import { locatePrice } from '../../utils/locatePrice'
+import { locatePrice } from "../../utils/locatePrice";
+import { Link } from "react-router";
 
 export function CartItem({ product }) {
   const dispatch = useDispatch();
@@ -24,12 +25,18 @@ export function CartItem({ product }) {
     dispatch(decreaseProduct(product.id));
   }
 
+  const { imageUrl, name, price, quantity } = product;
+
   return (
     <div className="flex flex-grow-1">
-      <img src={product.imageUrl} className="w-36" alt={product.name} />
+      <Link to={`/games/${product.id}`}>
+        <img src={imageUrl} className="w-36" alt={name} />
+      </Link>
       <div className="pt-2 space-y-2">
-        <p className="font-bold">{product.name}</p>
-        <p className="text-lg font-bold text-orange-500">{locatePrice(product.price)}</p>
+        <p className="font-bold">{name}</p>
+        <p className="text-lg font-bold text-orange-500">
+          {locatePrice(price)}
+        </p>
 
         <div className="flex space-x-24">
           <div className="flex items-center space-x-2 pl-2">
@@ -37,7 +44,7 @@ export function CartItem({ product }) {
               <FaMinus className="hover:scale-125 transition duration-150 ease-linear" />
             </button>
 
-            <span>{product.quantity}</span>
+            <span>{quantity}</span>
 
             <button onClick={handleIncreaseProduct}>
               <FaPlus className="hover:scale-125 transition duration-150 ease-linear" />

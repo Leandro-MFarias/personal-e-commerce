@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { selectProductsCount } from "../../redux/cart/cart.selectors";
+import { Link } from "react-router";
 
 import { FaShoppingCart } from "react-icons/fa";
 import { SearchBar } from "../SearchBar";
@@ -9,10 +10,12 @@ export function Header({ setIsVisible }) {
 
   return (
     <header className="flex justify-between py-6 xl:px-3 px-4">
-      <h2 className="text-3xl text-orange-500 font-semibold">ShopGames</h2>
+      <Link to={"/"}>
+        <h2 className="text-3xl text-orange-500 font-semibold">ShopGames</h2>
+      </Link>
       <nav className="flex items-center space-x-8">
         <SearchBar />
-        
+
         <button
           className="flex items-center space-x-2 text-xl"
           onClick={() => setIsVisible(true)}

@@ -2,27 +2,34 @@ import game from "../../assets/wii-donkeyReturn.png";
 import dk1 from "../../assets/dk1.png";
 import dk2 from "../../assets/dk2.png";
 import dk3 from "../../assets/dk3.png";
+import { useParams } from "react-router";
+import { products } from '../../data/products'
 
 export function GameDetail() {
+  const { gameId } = useParams()
+  const product = products.find((product) => product.id === gameId)
+  const { name, imageUrl, console, price  } = product
+
   return (
-    <section className="max-w-screen-lg mx-auto flex bg-white text-black h-[70vh] px-10 space-x-24 pt-20 rounded-md">
+    <section className="max-w-screen-lg mx-auto flex bg-white text-black h-[80vh] px-10 space-x-24 pt-20 rounded-md">
       <div className="space-y-10 flex flex-col items-center">
-        <img src={game} alt="" className="h-72" />
+        <img src={imageUrl} alt={name} className="h-72" />
         <div className="flex space-x-2">
           <img src={dk1} alt="" className="w-28" />
           <img src={dk2} alt="" className="w-28" />
           <img src={dk3} alt="" className="w-28" />
         </div>
       </div>
-      <div className="flex flex-col space-y-10 ">
+      <div className="flex flex-col space-y-6 ">
         <div className="space-y-5">
-          <div className="flex items-center space-x-2">
+          <div className="flex  items-center space-x-2">
             <span className="text-base text-zinc-400 font-normal">Jogo: </span>
-            <h2 className="text-3xl font-bold">Donkey Kong Return</h2>
+            <h2 className="text-3xl font-bold">{name}</h2>
           </div>
+          <div className="bg-zinc-300 w-full h-[1px]" />
           <div className="flex items-center space-x-2">
             <span className="text-base text-zinc-400 font-normal">Marca: </span>
-            <h2 className="text-lg font-bold">Nintendo Wii</h2>
+            <h2 className="text-lg font-bold">{console}</h2>
           </div>
           <div className="flex space-x-2 w-[410px]">
             <span className="text-base text-zinc-400 font-normal">Sobre: </span>
@@ -34,9 +41,12 @@ export function GameDetail() {
           </div>
           <div className="flex items-center space-x-2">
             <span className="text-base text-zinc-400 font-normal">Preço: </span>
-            <h2 className="text-lg font-bold">R$ 143,91</h2>
+            <h2 className="text-lg font-bold">{price}</h2>
           </div>
         </div>
+
+        <div className="bg-zinc-300 w-full h-[1px]" />
+
         <div className="w-full space-y-3">
           <button className="w-full py-3 bg-orange-500 text-white text-xl font-semibold rounded-xl hover:bg-amber-500 transition duration-150 ease-in">
             Comprar
@@ -47,7 +57,7 @@ export function GameDetail() {
               <p>Parcelas</p>
             </div>
             <div className="w-full h-[1px] bg-zinc-400" />
-            <div className="flex space-x-10 justify-center">
+            <div className="flex space-x-10 pl-1">
               <div className="text-xs text-zinc-500">
                 <p>1x de R$ 143,91 sem juros</p>
                 <p>2x de R$ 71,95 sem juros</p>
