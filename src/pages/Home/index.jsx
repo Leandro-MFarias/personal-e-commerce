@@ -2,18 +2,18 @@ import { useRef, useState } from "react";
 
 import { Header } from "../../components/Header";
 import { Hero } from "../../components/Hero";
-import { Cart } from "../../components/Cart";
 import { Footer } from "../../components/Footer";
+import { ShowCart } from "../../components/ShowCart";
 
 export function Home() {
-    const [isVisible, setIsVisible] = useState(false);
+    const [ isVisible, setIsVisible] = useState(false);
     const cartRef = useRef(null);
   
     function handleCloseCart(e) {
       if (cartRef.current && !cartRef.current.contains(e.target)) {
         setIsVisible(false);
       }
-    }
+    } 
 
   return (
     <div onClick={handleCloseCart} className="space-y-10">
@@ -24,12 +24,7 @@ export function Home() {
       </div>
 
       <Footer />
-
-      {isVisible && (
-        <div ref={cartRef}>
-          <Cart setIsVisible={setIsVisible} />
-        </div>
-      )}
+      <ShowCart cartRef={cartRef} isVisible={isVisible} setIsVisible={setIsVisible} />
     </div>
   );
 }

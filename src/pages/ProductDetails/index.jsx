@@ -1,17 +1,28 @@
+import { useRef, useState } from "react";
 import { Footer } from "../../components/Footer";
 import { GameDetail } from "../../components/GameDetail";
 import { Header } from "../../components/Header";
-import { ProductGame } from "../../components/ProductGame";
+import { ShowCart } from "../../components/ShowCart";
 
 export function ProductDetails() {
+  const [isVisible, setIsVisible] = useState(false);
+  const cartRef = useRef(null);
+
+  function handleCloseCart(e) {
+    if (cartRef.current && !cartRef.current.contains(e.target)) {
+      setIsVisible(false);
+    }
+  }
+
   return (
-    <div className="space-y-10">
+    <div onClick={handleCloseCart} className="space-y-10">
       <div className="max-w-screen-2xl mx-auto">
-        <Header />
+        <Header setIsVisible={setIsVisible} />
         <div className="bg-orange-600 w-full h-[1px] mb-10" />
         <GameDetail />
       </div>
       <Footer />
+      <ShowCart cartRef={cartRef} isVisible={isVisible} setIsVisible={setIsVisible} />
     </div>
   );
 }
