@@ -2,7 +2,7 @@ import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 
 export function Footer() {
   return (
-    <footer className="flex items-center justify-around bg-zinc-500/90 shadow-shape h-full py-10">
+    <footer className="flex items-center justify-around bg-zinc-500/90 shadow-shape py-10">
       <h2 className="text-5xl text-orange-500 font-bold">ShopGames</h2>
 
       <div className="flex flex-col space-y-3">

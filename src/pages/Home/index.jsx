@@ -23,8 +23,8 @@ export function Home() {
         <Hero />
       </div>
 
-      <Footer />
       <ShowCart cartRef={cartRef} isVisible={isVisible} setIsVisible={setIsVisible} />
+      <Footer />
     </div>
   );
 }

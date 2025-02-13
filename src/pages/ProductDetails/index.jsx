@@ -21,8 +21,8 @@ export function ProductDetails() {
         <div className="bg-orange-600 w-full h-[1px] mb-10" />
         <GameDetail />
       </div>
-      <Footer />
       <ShowCart cartRef={cartRef} isVisible={isVisible} setIsVisible={setIsVisible} />
+      <Footer />
     </div>
   );
 }
