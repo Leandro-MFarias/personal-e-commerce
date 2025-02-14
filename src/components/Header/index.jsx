@@ -1,13 +1,19 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectProductsCount } from "../../redux/cart/cart.selectors";
 import { Link } from "react-router";
 
 import { FaShoppingCart } from "react-icons/fa";
 import { SearchBar } from "../SearchBar";
+import { openCart } from "../../redux/cart/slice";
 
-export function Header({ setIsVisible }) {
+export function Header() {
+  const dispatch = useDispatch()
   const productCount = useSelector(selectProductsCount);
-
+  
+  function showCart() {
+    dispatch(openCart())
+  }
+  
   return (
     <header className="flex justify-between py-6 xl:px-3 px-4">
       <Link to={"/"}>
@@ -18,7 +24,7 @@ export function Header({ setIsVisible }) {
 
         <button
           className="flex items-center space-x-2 text-xl"
-          onClick={() => setIsVisible(true)}
+          onClick={showCart}
         >
           <span>Carrinho</span>
           <div className="relative">
